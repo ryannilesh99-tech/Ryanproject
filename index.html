@@ -21,21 +21,12 @@
     text-align: center;
     color: white;
     width: 100%;
-    position: relative;
   }
 
   h1 {
     font-size: 2.2rem;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 0 10px;
-  }
-
-  /* Owl */
-  #owl {
-    position: fixed;
-    font-size: 2.5rem;
-    pointer-events: none;
-    transition: left 0.3s ease, top 0.3s ease;
   }
 
   /* YES button */
@@ -67,6 +58,14 @@
     cursor: pointer;
     opacity: 0.75;
   }
+
+  /* Owl */
+  #owl {
+    position: fixed;
+    font-size: 2.5rem;
+    pointer-events: none;
+    transition: left 0.3s ease, top 0.3s ease;
+  }
 </style>
 </head>
 
@@ -80,10 +79,20 @@
 
 <div id="owl">🦉💖</div>
 
+<!-- Hidden YouTube music -->
+<iframe
+  id="ytMusic"
+  width="0"
+  height="0"
+  style="display:none"
+  allow="autoplay">
+</iframe>
+
 <script>
   const noBtn = document.getElementById("noBtn");
   const yesBtn = document.getElementById("yesBtn");
   const owl = document.getElementById("owl");
+  const ytMusic = document.getElementById("ytMusic");
 
   function moveNoButton() {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -92,12 +101,12 @@
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 
-    // Owl follows NO button (slightly above it)
+    // Owl follows NO button
     owl.style.left = (x - 10) + "px";
     owl.style.top = (y - 50) + "px";
   }
 
-  // Initial placement
+  // Initial position
   moveNoButton();
 
   // Desktop hover
@@ -109,7 +118,7 @@
     moveNoButton();
   });
 
-  // NO clicked (rare 😜)
+  // NO clicked
   noBtn.addEventListener("click", () => {
     document.body.innerHTML = `
       <div style="
@@ -130,6 +139,12 @@
 
   // YES clicked
   yesBtn.addEventListener("click", () => {
+    // Start song from lyric (~98 seconds)
+    ytMusic.src =
+      "https://www.youtube.com/embed/nyuo9-OjNNg?start=98&autoplay=1";
+
+    ytMusic.style.display = "block";
+
     document.body.innerHTML = `
       <div style="
         height:100vh;
