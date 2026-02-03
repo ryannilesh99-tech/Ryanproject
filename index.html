@@ -79,13 +79,14 @@
 
 <div id="owl">🦉💖</div>
 
-<!-- Hidden YouTube music -->
+<!-- Hidden YouTube music (MOBILE SAFE) -->
 <iframe
   id="ytMusic"
   width="0"
   height="0"
   style="display:none"
-  allow="autoplay">
+  allow="autoplay; encrypted-media"
+  playsinline>
 </iframe>
 
 <script>
@@ -93,6 +94,7 @@
   const yesBtn = document.getElementById("yesBtn");
   const owl = document.getElementById("owl");
   const ytMusic = document.getElementById("ytMusic");
+  const container = document.querySelector(".container");
 
   function moveNoButton() {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -120,15 +122,12 @@
 
   // NO clicked
   noBtn.addEventListener("click", () => {
-    document.body.innerHTML = `
+    container.innerHTML = `
       <div style="
-        height:100vh;
         display:flex;
         justify-content:center;
         align-items:center;
         text-align:center;
-        color:white;
-        background:linear-gradient(135deg,#ff758c,#ff7eb3);
         font-size:2.2rem;
         padding:20px;
       ">
@@ -137,24 +136,22 @@
     `;
   });
 
-  // YES clicked
+  // YES clicked (MOBILE AUDIO SAFE)
   yesBtn.addEventListener("click", () => {
-    // Start song from lyric (~98 seconds)
+
+    // Start song from lyric (~98s)
     ytMusic.src =
-      "https://www.youtube.com/embed/nyuo9-OjNNg?start=98&autoplay=1";
+      "https://www.youtube.com/embed/nyuo9-OjNNg?start=98&autoplay=1&playsinline=1";
 
     ytMusic.style.display = "block";
 
-    document.body.innerHTML = `
+    container.innerHTML = `
       <div style="
-        height:100vh;
         display:flex;
         justify-content:center;
         align-items:center;
         flex-direction:column;
         text-align:center;
-        color:white;
-        background:linear-gradient(135deg,#ff758c,#ff7eb3);
         font-size:2.2rem;
         padding:20px;
       ">
